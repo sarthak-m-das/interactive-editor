@@ -1,0 +1,116 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 999;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1d1d1d;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 500px;
+  max-width: 80%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  z-index: 1000;
+  transition: transform 0.3s ease-out;
+
+  h2 {
+    color: #fff;
+    font-size: 2rem;
+    margin: 0 0 1rem 0;
+  }
+
+  label {
+    display: block;
+    font-size: 1.2rem;
+  }
+
+  input,
+  textarea {
+    width: 95%;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+    font-size: 1rem;
+
+    &:focus {
+      outline: none;
+      border-color: #ffcc00;
+      box-shadow: 0 0 5px rgba(255, 204, 0, 0.8);
+    }
+  }
+
+  textarea {
+    height: 100px;
+    resize: none;
+  }
+
+  button {
+    padding: 0.75rem 1.5rem;
+    margin-right: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:first-of-type {
+      background-color: #4d4d4d;
+      color: #fff;
+
+      &:hover {
+        background-color: #121212;
+      }
+    }
+
+    &:last-of-type {
+      background-color: transparent;
+      color: #ccc;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+    h2 {
+      font-size: 1.25rem;
+    }
+
+    input,
+    textarea {
+      padding: 0.5rem;
+    }
+
+    button {
+      padding: 0.5rem;
+      font-size: 0.8rem;
+    }
+  }
+}

@@ -1,0 +1,80 @@
+.instructor-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  background-color: #1d1d1d;
+  min-height: 100vh;
+}
+
+.instructor-page-heading {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.article-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.article-card, .create-article-card {
+  width: 300px;
+  height: 200px;
+  padding: 1.5rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.article-card {
+  background-color: #4d4d4d;
+  color: #fff;
+
+  &:hover {
+    background-color: #121212;
+  }
+}
+
+.article-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.article-summary {
+  font-size: 1rem;
+  color: #ccc;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.create-article-card {
+  border: 3px dashed #ccc;
+  color: #ccc;
+  background: #121212;
+
+  &:hover {
+    border-color: #ffcc00;
+    box-shadow: 0 0 5px rgba(255, 204, 0, 0.8);
+    color: #ffcc00;
+  }
+
+  .plus-icon {
+    font-size: 8rem;
+    margin-bottom: 20px;
+    color: inherit;
+  }
+}
