@@ -22,7 +22,7 @@ const IndexSideBar: React.FC<IndexSideBarProps> = ({ blocks }) => {
           currentSectionId = heading.id;
         }
       });
-      setActiveHeadingId(currentSectionId);
+      if (currentSectionId) setActiveHeadingId(currentSectionId);
     };
 
     window.addEventListener('scroll', handleScroll);

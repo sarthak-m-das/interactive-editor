@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-type Role = 'student' | 'instructor' | 'guest';
-
+import { Role, Mode } from '../types/role';
 interface RoleState {
   currentRole: Role;
+  mode: Mode;
 }
 
 // Initial state
 const initialState: RoleState = {
-  currentRole: 'guest',
+  currentRole: Role.guest,
+  mode: Mode.view,
 };
 
 export const roleSlice = createSlice({
@@ -18,11 +18,14 @@ export const roleSlice = createSlice({
     setRole: (state, action: PayloadAction<Role>) => {
       state.currentRole = action.payload;
     },
-    resetRole: (state) => {
-      state.currentRole = 'guest';
-    },
+    setMode: (state, action: PayloadAction<Mode>) => {
+      state.mode = action.payload;
+    }
+    
   },
 });
 
-export const { setRole, resetRole } = roleSlice.actions;
+export const { setRole, setMode } = roleSlice.actions;
+export const selectRole = (state: { role: RoleState }) => state.role.currentRole;
+export const selectMode = (state: { role: RoleState }) => state.role.mode;
 export default roleSlice.reducer;

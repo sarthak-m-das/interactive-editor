@@ -22,6 +22,26 @@
       cursor: pointer;
     }
   }
+
+  .header-right {
+    margin-right: 50px;
+  }
+
+  .header-editor-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: #ffcc00;
+    color: #2c2c2c;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #ffdd33;
+    }
+  }
 }
 
 .article-content {

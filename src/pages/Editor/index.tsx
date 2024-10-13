@@ -1,5 +1,5 @@
 import React from 'react';
-import "./styles.scss";
+import "./Editor.scss";
 
 import { Color } from "@tiptap/extension-color";
 import ListItem from "@tiptap/extension-list-item";
