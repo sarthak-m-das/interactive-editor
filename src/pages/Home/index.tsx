@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import {useAppDispatch} from '../../store';
 import {setRole} from '../../slices/rolesSlice';
 import './Home.scss';
-import {Role} from '../../types/role';
+import { Role } from '../../types/role';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
