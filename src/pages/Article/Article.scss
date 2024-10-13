@@ -20,65 +20,6 @@
   > * + * {
     margin-top: 0.75em;
   }
-
-  h1, h2, h3, h4, h5, h6 {
-    line-height: 1.1;
-    color: #e6e6e6;
-  }
-
-  p {
-    margin-bottom: 1.5rem;
-    font-size: 1rem;
-  }
-
-  code {
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0.5rem;
-    padding: 0.2rem;
-  }
-
-  pre {
-    background: rgba(255, 255, 255, 0.1);
-    font-family: "JetBrainsMono", monospace;
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
-
-    code {
-      color: inherit;
-      padding: 0;
-      background: none;
-      font-size: 0.8rem;
-      border: none;
-    }
-  }
-
-  ul, ol {
-    padding: 0 1rem;
-    margin-bottom: 1.5rem;
-  }
-
-  blockquote {
-    margin-left: 0;
-    padding-left: 1rem;
-    border-left: 2px solid rgba(255, 255, 255, 0.4);
-    color: rgba(255, 255, 255, 0.8);
-    font-style: italic;
-  }
-
-  hr {
-    border: none;
-    border-top: 2px solid rgba(255, 255, 255, 0.1);
-    margin: 2rem 0;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-  }
 }
 
 button {

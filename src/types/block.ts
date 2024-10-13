@@ -10,20 +10,20 @@ export enum BlockType {
   HardBreak = 'HARD_BREAK',
 }
 
-interface Block {
+export interface Block {
   id: string;
   type: BlockType;
   content: any;
 }
 
-interface TextBlock extends Block {
+export interface TextBlock extends Block {
   type: BlockType.Text;
   content: {
     text: string;
   };
 }
 
-interface ImageBlock extends Block {
+export interface ImageBlock extends Block {
   type: BlockType.Image;
   content: {
     url: string;
@@ -31,7 +31,7 @@ interface ImageBlock extends Block {
   };
 }
 
-interface CodeSnippetBlock extends Block {
+export interface CodeSnippetBlock extends Block {
   type: BlockType.CodeSnippet;
   content: {
     language: string;
@@ -39,7 +39,7 @@ interface CodeSnippetBlock extends Block {
   };
 }
 
-interface MultipleChoiceBlock extends Block {
+export interface MultipleChoiceBlock extends Block {
   type: BlockType.MultipleChoice;
   content: {
     question: string;
@@ -48,14 +48,14 @@ interface MultipleChoiceBlock extends Block {
   };
 }
 
-interface BlockquoteBlock extends Block {
+export interface BlockquoteBlock extends Block {
   type: BlockType.Blockquote;
   content: {
     text: string;
   };
 }
 
-interface ListBlock extends Block {
+export interface ListBlock extends Block {
   type: BlockType.List;
   content: {
     listType: 'ordered' | 'unordered';
@@ -63,7 +63,7 @@ interface ListBlock extends Block {
   };
 }
 
-interface HeadingBlock extends Block {
+export interface HeadingBlock extends Block {
   type: BlockType.Heading;
   content: {
     level: 1 | 2 | 3 | 4 | 5 | 6;
@@ -71,12 +71,12 @@ interface HeadingBlock extends Block {
   };
 }
 
-interface HorizontalRuleBlock extends Block {
+export interface HorizontalRuleBlock extends Block {
   type: BlockType.HorizontalRule;
   content: {};
 }
 
-interface HardBreakBlock extends Block {
+export interface HardBreakBlock extends Block {
   type: BlockType.HardBreak;
   content: {};
 }
