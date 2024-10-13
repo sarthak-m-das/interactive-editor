@@ -14,13 +14,11 @@
     margin: 0;
   }
 
-  .side-menu-item {
-    padding: 0.75rem 1rem;
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
+  .side-menu-item-1,
+  .side-menu-item-2,
+  .side-menu-item-3 {
     color: #ccc;
     cursor: pointer;
-    border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
 
     &:hover {
@@ -30,8 +28,36 @@
     &:active {
       color: #ffcc00;
     }
+
+    &.active {
+      color: #ffcc00;
+      font-weight: bold;
+    }
   }
 
+  .side-menu-item-1 {
+    font-size: 1.2rem;
+    padding: 0.75rem 1rem 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .side-menu-item-2 {
+    font-size: 1rem;
+    padding: 0.5rem 2rem;
+    line-height: 1.5;
+
+    &.first-child {
+      padding-top: 0.75rem;
+    }
+
+    &::before {
+      content: "- ";
+      color: #ccc;
+      margin-right: 0.5rem;
+      font-weight: bold;
+    }
+  }
+  
   /* Hide sidebar on mobile view */
   @media (max-width: 768px) {
     display: none;

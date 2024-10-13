@@ -21,7 +21,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="homepage-container">
-      <h1 className="homepage-heading">Welcome to the Interactive Learning Platform</h1>
+      <h1 className="homepage-heading">Welcome to the <span className='homepage-heading-title'>Interactive Learning Platform</span></h1>
       <p className="homepage-subheading">Please choose how you want to sign in</p>
 
       <div className="button-container">

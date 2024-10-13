@@ -27,7 +27,7 @@ const InstructorPage: React.FC = () => {
 
   return (
     <div className="instructor-page-container">
-      <h1 className="instructor-page-heading">Your Articles</h1>
+      <h1 className="instructor-page-heading">Your <span className='instructor-page-heading-title'>Articles</span></h1>
       <div className="article-list-container">
         {articles.map((article) => (
           <div key={article.id} className="article-card" onClick={() => handleArticleClick(article.id)}>

@@ -12,7 +12,7 @@ const StudentPage: React.FC = () => {
 
   return (
     <div className="student-page-container">
-      <h1 className="student-page-heading">Available Articles</h1>
+      <h1 className="student-page-heading">Available <span className='student-page-heading-title'>Articles</span></h1>
       <div className="article-list-container">
         {articles.map((article) => (
           <div key={article.id} className="article-card" onClick={() => handleArticleClick(article.id)}>
