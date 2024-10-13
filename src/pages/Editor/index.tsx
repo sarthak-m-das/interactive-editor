@@ -55,14 +55,14 @@ const extensions = [
   </blockquote>
   `;
   
-  const Editor: React.FC = () => {
-    return (
-      <EditorProvider
-        slotBefore={<MenuBar />}
-        extensions={extensions}
-        content={content}
-      />
-    );
-  };
+const Editor: React.FC = () => {
+  return (
+    <EditorProvider
+      slotBefore={<MenuBar />}
+      extensions={extensions}
+      content={content}
+    />
+  );
+};
 
 export default Editor;

@@ -1,0 +1,42 @@
+.menu-bar {
+  position: fixed;
+  bottom: 20px;
+  left: 400px;
+  width: 75vw;
+  padding: 1rem;
+  background-color: #2c2c2c;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  button {
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    &.is-active {
+      background-color: rgba(255, 255, 255, 0.3); /* Active state styling */
+    }
+
+    &:disabled {
+      background-color: rgba(255, 255, 255, 0.1);
+      cursor: not-allowed;
+    }
+  }
+}
