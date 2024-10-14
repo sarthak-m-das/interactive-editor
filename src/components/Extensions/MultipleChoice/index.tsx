@@ -60,7 +60,7 @@ const MultipleChoiceComponent: React.FC<MultipleChoiceProps> = (props) => {
           />
         </div>
         <div className="choices-container">
-          <p>Choices</p>
+          {/* <p>Choices</p> */}
           <ul>
             {choices.map((choice: string, index: number) => (
               <li key={index}>

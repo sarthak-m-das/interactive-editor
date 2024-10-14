@@ -28,7 +28,23 @@
     margin-right: 50px;
   }
 
-  .header-editor-button {
+  .header-edit-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1.5rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.9); 
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #121212;
+    }
+  }
+
+  .header-publish-button {
     display: flex;
     justify-content: center;
     align-items: center;

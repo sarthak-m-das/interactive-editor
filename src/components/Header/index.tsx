@@ -5,20 +5,26 @@ import {useSelector} from 'react-redux';
 import { selectMode, selectRole, setMode } from '../../slices/rolesSlice';
 import { Role, Mode } from '../../types/role';
 import { useAppDispatch } from '../../store';
+import { useCurrentEditor } from '@tiptap/react';
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const role = useSelector(selectRole);
   const mode = useSelector(selectMode);
+  const { editor } = useCurrentEditor();
 
   const handleOnClick = () => {
     return () => {
+      dispatch(setMode(Mode.view));
       navigate('/');
     };
   };
 
   const handleMode = () => {
+    if (mode === Mode.edit && editor) {
+      console.log(editor.getJSON());
+    }
     dispatch(setMode(mode === Mode.view ? Mode.edit : Mode.view));
   };
 
@@ -28,8 +34,8 @@ const Header: React.FC = () => {
         <div className="header-title" onClick={handleOnClick()}>Interactive Learning Platform</div>
       </div>
       <div className="header-right">
-        {role === Role.instructor && mode === Mode.view && <div className="header-editor-button" onClick={handleMode}>Edit</div>}
-        {role === Role.instructor && mode === Mode.edit && <div className="header-editor-button" onClick={handleMode}>Publish</div>}
+        {role === Role.instructor && mode === Mode.view && <div className="header-edit-button" onClick={handleMode}>Edit</div>}
+        {role === Role.instructor && mode === Mode.edit && <div className="header-publish-button" onClick={handleMode}>Publish</div>}
       </div>
         
     </div>

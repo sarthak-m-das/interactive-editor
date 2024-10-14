@@ -9,16 +9,11 @@ import { EditorContent, EditorProvider, useCurrentEditor } from '@tiptap/react';
 import MenuBar from '../../components/MenuBar';
 import exampleArticle from '../../data/a';
 import MultipleChoice from '../../components/Extensions/MultipleChoice/extension';
+import { selectMode } from '../../slices/rolesSlice';
+import { useSelector } from 'react-redux';
+import { Mode } from '../../types/role';
+import Header from '../../components/Header';
 
-// const CustomBulletList = BulletList.extend({
-//   addKeyboardShortcuts() {
-//     return {
-//       'Mod-l': () => this.editor.commands.toggleBulletList(),
-//     }
-//   },
-// })
-
-// Extensions for TipTap editor
 const extensions = [
   Color.configure({ types: [TextStyle.name, ListItem.name] }),
   TextStyle,
@@ -54,13 +49,15 @@ const EditorWithSaveButton: React.FC = () => {
 
 
 const Editor: React.FC = () => {
+  const mode = useSelector(selectMode);
+
   return (
     <EditorProvider
-      slotBefore={<MenuBar />}
-      slotAfter={<EditorWithSaveButton />}
+      slotAfter={mode === Mode.edit && <MenuBar />}
+      slotBefore={<Header />}
       extensions={extensions}
       content={exampleArticle} 
-      editable={true}
+      editable={mode === Mode.edit}
       injectCSS={false}
     />
   );
