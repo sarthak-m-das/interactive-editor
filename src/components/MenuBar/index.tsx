@@ -70,24 +70,6 @@ const MenuBar: React.FC = () => {
           h3
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleHeading({ level: 4 }).run()}
-          className={editor.isActive("heading", { level: 4 }) ? "is-active" : ""}
-        >
-          h4
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleHeading({ level: 5 }).run()}
-          className={editor.isActive("heading", { level: 5 }) ? "is-active" : ""}
-        >
-          h5
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleHeading({ level: 6 }).run()}
-          className={editor.isActive("heading", { level: 6 }) ? "is-active" : ""}
-        >
-          h6
-        </button>
-        <button
           onClick={() => editor.chain().focus().toggleBulletList().run()}
           className={editor.isActive("bulletList") ? "is-active" : ""}
         >
@@ -134,6 +116,12 @@ const MenuBar: React.FC = () => {
           className={editor.isActive("textStyle", { color: "#958DF1" }) ? "is-active" : ""}
         >
           purple
+        </button>
+        <button
+          onClick={() => editor.chain().focus().setMultipleChoice().run()}
+          disabled={!editor.can().chain().focus().setMultipleChoice().run()}
+        >
+          multiple choice
         </button>
       </div>
     );

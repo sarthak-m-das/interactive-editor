@@ -1,3 +1,4 @@
+import { Block } from './block';
 export interface Article {
   id: string;
   title: string;
