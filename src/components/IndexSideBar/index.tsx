@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './IndexSideBar.scss';
+import { Block, BlockType, HeadingBlock } from '../../types/block';
 
 interface IndexSideBarProps {
-  blocks: any[];
+  blocks: Block[];
 }
 
 const IndexSideBar: React.FC<IndexSideBarProps> = ({ blocks }) => {
@@ -31,22 +32,24 @@ const IndexSideBar: React.FC<IndexSideBarProps> = ({ blocks }) => {
     };
   }, []);
 
-  const headings = blocks.filter(
-    (block) => block.type === 'HEADING' && block.content.level <= 2
-  );
+  const headings: HeadingBlock[] = blocks
+    .filter(
+      (block): block is HeadingBlock =>
+        block.type === BlockType.Heading && block?.attrs?.level <= 2
+    );
 
   return (
     <div className="side-menu">
       <ul>
-        {headings.map((heading) => (
+        {headings.map((heading, index) => (
           <li
-            key={heading.id}
-            onClick={() => handleNavigation(`heading-${heading.id}`)}
-            className={`side-menu-item-${heading.content.level} ${
-              activeHeadingId === `heading-${heading.id}` ? 'active' : ''
+            key={index}
+            onClick={() => handleNavigation(`heading-${index}`)}
+            className={`side-menu-item-${heading?.attrs?.level} ${
+              activeHeadingId === `heading-${index}` ? 'active' : ''
             }`}
           >
-            {heading.content.text}
+            {heading.content[0].text}
           </li>
         ))}
       </ul>

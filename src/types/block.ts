@@ -1,31 +1,31 @@
 export enum BlockType {
-  Text = 'TEXT',
-  Image = 'IMAGE',
-  CodeSnippet = 'CODE_SNIPPET',
-  MultipleChoice = 'MULTIPLE_CHOICE',
-  Blockquote = 'BLOCKQUOTE',
-  List = 'LIST',
-  Heading = 'HEADING',
-  HorizontalRule = 'HORIZONTAL_RULE',
-  HardBreak = 'HARD_BREAK',
+  Text = 'text',
+  Image = 'image',
+  CodeSnippet = 'codeBlock',
+  MultipleChoice = 'multipleChoice',
+  Blockquote = 'blockquote',
+  List = 'bulletList',
+  ListItem = 'listItem',
+  Heading = 'heading',
+  HorizontalRule = 'horizontalRule',
+  HardBreak = 'hardBreak',
 }
 
 export interface Block {
-  id: string;
-  type: BlockType;
-  content: any;
+  type: string;
+  attrs?: Record<string, any>;
+  content?: Block[];
+  text?: string;
 }
 
 export interface TextBlock extends Block {
   type: BlockType.Text;
-  content: {
-    text: string;
-  };
+  text: string;
 }
 
 export interface ImageBlock extends Block {
   type: BlockType.Image;
-  content: {
+  attrs: {
     url: string;
     altText: string;
   };
@@ -33,50 +33,51 @@ export interface ImageBlock extends Block {
 
 export interface CodeSnippetBlock extends Block {
   type: BlockType.CodeSnippet;
-  content: {
+  attrs: {
     language: string;
-    code: string;
   };
+  content: Block[];
 }
 
 export interface MultipleChoiceBlock extends Block {
   type: BlockType.MultipleChoice;
-  content: {
+  attrs: {
     question: string;
-    choices: { id: string; text: string }[];
-    correctAnswerId: string;
+    choices: string[];
+    correctAnswer: number | null;
   };
 }
 
 export interface BlockquoteBlock extends Block {
   type: BlockType.Blockquote;
-  content: {
-    text: string;
-  };
+  content: Block[];
 }
 
 export interface ListBlock extends Block {
   type: BlockType.List;
-  content: {
-    listType: 'ordered' | 'unordered';
-    items: string[];
+  content: ListItemBlock[];
+}
+
+export interface ListItemBlock extends Block {
+  type: BlockType.ListItem;
+  attrs?: {
+    color?: string;
   };
+  content: Block[];
 }
 
 export interface HeadingBlock extends Block {
   type: BlockType.Heading;
-  content: {
+  attrs: {
     level: 1 | 2 | 3 | 4 | 5 | 6;
-    text: string;
   };
+  content: TextBlock[];
 }
 
 export interface HorizontalRuleBlock extends Block {
   type: BlockType.HorizontalRule;
-  content: {};
 }
 
 export interface HardBreakBlock extends Block {
   type: BlockType.HardBreak;
-  content: {};
 }

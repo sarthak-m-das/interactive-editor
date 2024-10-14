@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
 import "./Editor.scss";
 
 import { Color } from "@tiptap/extension-color";
 import ListItem from "@tiptap/extension-list-item";
 import TextStyle from "@tiptap/extension-text-style";
 import StarterKit from "@tiptap/starter-kit";
-import { EditorContent, EditorProvider, useCurrentEditor } from '@tiptap/react';
+import { EditorProvider } from '@tiptap/react';
 import MenuBar from '../../components/MenuBar';
-import exampleArticle from '../../data/a';
+import exampleArticle from '../../data/article';
 import MultipleChoice from '../../components/Extensions/MultipleChoice/extension';
 import { selectMode } from '../../slices/rolesSlice';
 import { useSelector } from 'react-redux';
@@ -28,25 +27,6 @@ const extensions = [
     },
   }),
 ];
-
-
-const EditorWithSaveButton: React.FC = () => {
-  const { editor } = useCurrentEditor();
-
-  const handleSubmit = () => {
-    if (editor) {
-      console.log(editor.getJSON());
-    }
-  };
-
-  return (
-    <>
-      <EditorContent editor={editor} />
-      <button onClick={handleSubmit}>Save</button>
-    </>
-  );
-};
-
 
 const Editor: React.FC = () => {
   const mode = useSelector(selectMode);
