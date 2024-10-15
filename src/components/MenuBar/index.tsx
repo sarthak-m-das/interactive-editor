@@ -1,6 +1,8 @@
 import React from "react";
 import {useCurrentEditor} from "@tiptap/react";
 import './MenuBar.scss';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBold } from "@fortawesome/free-solid-svg-icons";
 
 const MenuBar: React.FC = () => {
     const { editor } = useCurrentEditor();
@@ -16,7 +18,7 @@ const MenuBar: React.FC = () => {
           disabled={!editor.can().chain().focus().toggleBold().run()}
           className={editor.isActive("bold") ? "is-active" : ""}
         >
-          bold
+          <FontAwesomeIcon icon={faBold} />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleItalic().run()}
@@ -150,7 +152,7 @@ export default MenuBar;
 //         disabled={!editor.can().chain().focus().toggleBold().run()}
 //         className={editor.isActive("bold") ? "is-active" : ""}
 //       >
-//         <FontAwesomeIcon icon={faBold} />
+//         
 //       </button>
 //       <button
 //         onClick={() => editor.chain().focus().toggleItalic().run()}

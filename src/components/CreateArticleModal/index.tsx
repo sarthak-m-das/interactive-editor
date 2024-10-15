@@ -5,7 +5,7 @@ import './CreateArticleModal.scss';
 interface CreateArticleModalProps {
   modalIsOpen: boolean;
   closeModal: () => void;
-  handleSubmit: (name: string, description: string) => void;
+  handleSubmit: (name: string, description: string,  event: React.FormEvent<HTMLFormElement>) => void;
 };
 
 
@@ -24,7 +24,7 @@ const CreateArticleModal: React.FC<CreateArticleModalProps> = ({ modalIsOpen, cl
       contentLabel="Create Article Modal"
     >
       <h2>Create New Article</h2>
-      <form onSubmit={() => handleSubmit(articleName, articleDescription)}>
+      <form onSubmit={(e) => handleSubmit(articleName, articleDescription, e)}>
         <label>
           Article Name
           <input

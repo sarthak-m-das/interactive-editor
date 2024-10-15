@@ -1,12 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Student.scss';
-import { articles } from '../../data/articles';
+import { useSelector } from 'react-redux';
+import { selectArticles } from '../../slices/articleSlice';
 
 const StudentPage: React.FC = () => {
   const navigate = useNavigate();
+  const articles = useSelector(selectArticles);
 
-  const handleArticleClick = (id: number) => {
+  const handleArticleClick = (id: string) => {
     navigate(`/article/${id}`);
   };
 
@@ -17,7 +19,7 @@ const StudentPage: React.FC = () => {
         {articles.map((article) => (
           <div key={article.id} className="article-card" onClick={() => handleArticleClick(article.id)}>
             <h2 className="article-title">{article.title}</h2>
-            <p className="article-summary">{article.summary}</p>
+            <p className="article-summary">{article.description}</p>
           </div>
         ))}
       </div>

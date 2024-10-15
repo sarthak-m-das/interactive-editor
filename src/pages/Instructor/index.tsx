@@ -1,16 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CreateArticleModal from '../../components/CreateArticleModal';
 import './Instructor.scss';
-import { articles } from '../../data/articles';
+import { createArticle, getAllArticle } from '../../actions/article';
+import { useSelector } from 'react-redux';
+import { selectArticles, setArticles } from '../../slices/articleSlice';
+import { useAppDispatch } from '../../store';
 
 const InstructorPage: React.FC = () => {
   const navigate = useNavigate();
   const [modalIsOpen, setIsOpen] = useState(false);
+  const articles = useSelector(selectArticles);
+  const dispatch = useAppDispatch();
 
-  const handleSubmit = (name: string, description: string) => {
-    articles.push({ id: articles.length + 1, title: name, summary: description });
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const resp = await getAllArticle();
+        if (resp) {
+          dispatch(setArticles(resp.articles));
+        }
+      } catch (error) {
+        console.error('Failed to fetch articles', error);
+      }
+    };
+
+    fetchArticles();
+  }, [dispatch]);
+
+  const handleSubmit = async (title: string, description: string,  event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const resp = await createArticle(title, description);
     closeModal();
+    navigate("/article/" + resp.id);
   };
 
   const handleCreateArticleClick = () => {
@@ -21,7 +43,7 @@ const InstructorPage: React.FC = () => {
     setIsOpen(false);
   };
 
-  const handleArticleClick = (id: number) => {
+  const handleArticleClick = (id: string) => {
     navigate(`/article/${id}`);
   };
 
@@ -32,7 +54,7 @@ const InstructorPage: React.FC = () => {
         {articles.map((article) => (
           <div key={article.id} className="article-card" onClick={() => handleArticleClick(article.id)}>
             <h2 className="article-title">{article.title}</h2>
-            <p className="article-summary">{article.summary}</p>
+            <p className="article-summary">{article.description}</p>
           </div>
         ))}
         <div className="create-article-card" onClick={handleCreateArticleClick}>

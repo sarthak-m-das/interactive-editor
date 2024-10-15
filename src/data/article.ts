@@ -1,4 +1,6 @@
-const exampleArticle = {
+import { Article } from "../types/article";
+
+const exampleArticle: Article = {
     type: "doc",
     content: [
         {
@@ -547,7 +549,12 @@ const exampleArticle = {
                 }
             ]
         }
-    ]
+    ],
+    title: "",
+    description: "",
+    id: "",
+    createdAt: new Date(),
+    updatedAt: new Date()
 };
 
 export default exampleArticle;
