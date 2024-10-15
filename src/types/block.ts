@@ -12,6 +12,7 @@ export enum BlockType {
 }
 
 export interface Block {
+  id?: string;
   type: string;
   attrs?: Record<string, any>;
   content?: Block[];

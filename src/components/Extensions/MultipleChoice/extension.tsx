@@ -17,6 +17,9 @@ const MultipleChoice = Node.create({
 
   addAttributes() {
     return {
+      blockID: {
+        default: null,
+      },
       question: {
         default: 'New question',
         parseHTML: (element) => element.getAttribute('data-question'),

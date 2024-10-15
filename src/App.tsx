@@ -3,7 +3,6 @@ import HomePage from './pages/Home';
 import StudentPage from './pages/Student';
 import InstructorPage from './pages/Instructor';
 import ArticlePage from './pages/Article';
-import Editor from './pages/Editor';
 
 const App: React.FC = () => {
   return (
@@ -13,7 +12,6 @@ const App: React.FC = () => {
         <Route path="/student" element={<StudentPage />} />
         <Route path="/instructor" element={<InstructorPage />} />
         <Route path="/article/:id" element={<ArticlePage />} />
-        <Route path="/article/:id/edit" element={<Editor />} />
         <Route path="*" element={<div>Not Found</div>} />
       </Routes>
     </BrowserRouter>

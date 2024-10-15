@@ -6,8 +6,16 @@ import { selectMode, selectRole, setMode } from '../../slices/rolesSlice';
 import { Role, Mode } from '../../types/role';
 import { useAppDispatch } from '../../store';
 import { useCurrentEditor } from '@tiptap/react';
+import { Article } from '../../types/article';
+import { Block } from '../../types/block';
+import { updateArticle } from '../../actions/article';
 
-const Header: React.FC = () => {
+type HeaderProps = {
+  article: Article | null;
+  articleId: string;
+};
+
+const Header: React.FC<HeaderProps> = ({article, articleId}) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const role = useSelector(selectRole);
@@ -21,9 +29,22 @@ const Header: React.FC = () => {
     };
   };
 
-  const handleMode = () => {
+  const handleMode = async () => {
+    if (article === null) {
+      return
+    }
+    
     if (mode === Mode.edit && editor) {
-      console.log(editor.getJSON());
+      const updatedArticle = { ...article };
+      updatedArticle.type = 'doc';
+      updatedArticle.content = editor.getJSON().content?.map(block => ({
+        ...block,
+        type: block.type || ''
+      })) as Block[];
+      updatedArticle.updatedAt = new Date();
+
+      // Save article
+      await updateArticle(updatedArticle);
     }
     dispatch(setMode(mode === Mode.view ? Mode.edit : Mode.view));
   };

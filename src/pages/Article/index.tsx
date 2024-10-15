@@ -1,18 +1,47 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Article.scss';
 import IndexSideBar from '../../components/IndexSideBar';
-import exampleArticle from '../../data/article';
 import Editor from '../Editor';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { selectCurrentArticle, selectLoading, setCurrentArticle } from '../../slices/articleSlice';
+import Loader from '../../components/Loader';
+import { getArticle } from '../../actions/article';
+import { useParams } from 'react-router-dom';
+import { selectMode } from '../../slices/rolesSlice';
 
 const ArticlePage: React.FC = () => {
+  const loading = useAppSelector(selectLoading);
+  const article = useAppSelector(selectCurrentArticle);
+  const dispatch = useAppDispatch();
+  const mode = useAppSelector(selectMode);
+  const { id } = useParams<{id: string}>();
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      if (!id) {
+        return;
+      }
+      const resp = await getArticle(id);
+      if (resp) {
+        dispatch(setCurrentArticle(resp.article));
+      }
+    };
+    fetchArticles();
+  }, [dispatch, id, mode]);
+
+
   return (
     <div className="article-root">
+      {loading ? (
+        <Loader />
+      ) : (
       <div className="article-container">
-        <IndexSideBar blocks={exampleArticle.content} />
+        <IndexSideBar blocks={article?.content? article.content : []} />
         <div className="article-content">
-          <Editor /> 
+          <Editor article={article} articleId={id? id : ''} />
         </div>
       </div>
+      )}
     </div>
   );
 };

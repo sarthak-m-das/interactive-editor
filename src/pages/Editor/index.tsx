@@ -1,17 +1,24 @@
-import "./Editor.scss";
-
 import { Color } from "@tiptap/extension-color";
 import ListItem from "@tiptap/extension-list-item";
 import TextStyle from "@tiptap/extension-text-style";
 import StarterKit from "@tiptap/starter-kit";
-import { EditorProvider } from '@tiptap/react';
+import { EditorProvider, useCurrentEditor } from '@tiptap/react';
 import MenuBar from '../../components/MenuBar';
-import exampleArticle from '../../data/article';
 import MultipleChoice from '../../components/Extensions/MultipleChoice/extension';
 import { selectMode } from '../../slices/rolesSlice';
-import { useSelector } from 'react-redux';
 import { Mode } from '../../types/role';
 import Header from '../../components/Header';
+import { Article } from "../../types/article";
+import { useAppDispatch, useAppSelector } from "../../store";
+import "./Editor.scss";
+import { useEffect, useState } from "react";
+import { selectLoading, setCurrentArticle } from "../../slices/articleSlice";
+import Loader from "../../components/Loader";
+
+type EditorProps = {
+  article: Article | null;
+  articleId: string;
+};
 
 const extensions = [
   Color.configure({ types: [TextStyle.name, ListItem.name] }),
@@ -28,18 +35,30 @@ const extensions = [
   }),
 ];
 
-const Editor: React.FC = () => {
-  const mode = useSelector(selectMode);
+const Editor: React.FC<EditorProps> = ({article, articleId}) => {
+  const mode = useAppSelector(selectMode);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch(setCurrentArticle(null));
+    };
+  }
+  , [dispatch]);
 
   return (
+    <>
+    {!!article &&
     <EditorProvider
       slotAfter={mode === Mode.edit && <MenuBar />}
-      slotBefore={<Header />}
+      slotBefore={<Header article={article} articleId={articleId}/>}
       extensions={extensions}
-      content={exampleArticle} 
+      content={article} 
       editable={mode === Mode.edit}
       injectCSS={false}
     />
+    }
+    </>
   );
 };
 

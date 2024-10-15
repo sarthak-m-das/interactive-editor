@@ -4,7 +4,7 @@ export interface Article {
   title: string;
   description: string;
   type: string;
-  content: Block[];
+  content?: Block[];
   createdAt: Date;
   updatedAt: Date;
 }

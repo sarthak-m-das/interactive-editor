@@ -1,9 +1,5 @@
 import { Article } from "../types/article";
 import config from "../config";
-import { setArticles } from "../slices/articleSlice";
-import { useAppDispatch } from "../store";
-
-
 
 export const createArticle = async (title: string, description: string) => {
   try {
@@ -11,7 +7,7 @@ export const createArticle = async (title: string, description: string) => {
       title,
       description,
       id: "",
-      type: "",
+      type: "doc",
       content: [],
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -36,6 +32,7 @@ export const getArticle = async (id: string) => {
     return response.json();
   } catch (error) {
     console.error('Error getting article', error);
+    return null;
   }
 };
 
@@ -48,3 +45,18 @@ export const getAllArticle = async () => {
     return [];
   }
 }
+
+export const updateArticle = async (article: Article) => {
+  try {
+    const response = await fetch(`${config.API_ROOT}/articles/${article.id}`, {
+      method: 'PUT',
+      headers: {
+      'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(article),
+    });
+    return response.json();
+  } catch (error) {
+    console.error('Error updating article', error);
+  }
+};
