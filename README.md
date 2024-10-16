@@ -2,6 +2,10 @@
 
 This project is an interactive text editor built with React and the TipTap editor library. It allows users to create and edit documents, supporting features such as rich text formatting, lists, code blocks, and multiple choice questions.
 
+
+https://github.com/user-attachments/assets/bdd0bf6e-0c92-43d2-bb2c-60b9fa6ce283
+
+
 ## Prerequisites
 
 To run this project, you first need to run the backend first:
