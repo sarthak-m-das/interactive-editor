@@ -1,6 +1,6 @@
 import config from "../../config";
 import { Article } from "../../types/article";
-import { BlockType, HeadingBlock, ParagraphBlock, TextBlock } from "../../types/block";
+import { BlockType, HeadingBlock, ParagraphBlock } from "../../types/block";
 
 const createArticle = async (title: string, description: string) => {
   try {

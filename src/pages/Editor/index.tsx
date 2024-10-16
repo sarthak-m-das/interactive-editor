@@ -3,7 +3,7 @@ import ListItem from "@tiptap/extension-list-item";
 import TextStyle from "@tiptap/extension-text-style";
 import StarterKit from "@tiptap/starter-kit";
 import { EditorProvider } from '@tiptap/react';
-import MenuBar from '../../components/MenuBar';
+import Toolbar from '../../components/Toolbar';
 import MultipleChoice from '../../components/Extensions/MultipleChoice/extension';
 import { selectMode } from '../../slices/rolesSlice';
 import { Mode } from '../../types/role';
@@ -49,7 +49,7 @@ const Editor: React.FC<EditorProps> = ({article, articleId}) => {
     <>
     {!!article &&
     <EditorProvider
-      slotAfter={mode === Mode.edit && <MenuBar />}
+      slotAfter={mode === Mode.edit && <Toolbar />}
       slotBefore={<Header article={article} articleId={articleId}/>}
       extensions={extensions}
       content={article} 
