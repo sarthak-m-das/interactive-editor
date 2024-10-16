@@ -4,6 +4,9 @@ import './MultipleChoice.scss';
 import { useParams } from 'react-router-dom';
 import saveAnswer from '../../../apis/answer/saveAnswer';
 import getAnswer from '../../../apis/answer/getAnswer';
+import { useAppSelector } from '../../../store';
+import { selectMode } from '../../../slices/rolesSlice';
+import { Mode } from '../../../types/role';
 
 interface MultipleChoiceProps {
   editor: any;
@@ -12,14 +15,13 @@ interface MultipleChoiceProps {
 }
 
 const MultipleChoiceComponent: React.FC<MultipleChoiceProps> = (props) => {
-  const { node, updateAttributes, editor } = props;
+  const { node, updateAttributes } = props;
+  const mode = useAppSelector(selectMode);
   const {id} = useParams<{id: string}>();
 
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [submitteOption, setSubmitteOption] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState(false);
-
-  const isEditable = editor.isEditable;
 
   const { blockID, question, choices, correctAnswer } = node.attrs;
 
@@ -84,7 +86,7 @@ const MultipleChoiceComponent: React.FC<MultipleChoiceProps> = (props) => {
 
   return (
     <>
-      {isEditable ? (
+      {mode === Mode.edit ? (
       <NodeViewWrapper className="multiple-choice-block">
         <div className="question-container">
           <p>Question Statement</p>
