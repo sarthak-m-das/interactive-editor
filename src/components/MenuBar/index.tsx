@@ -3,12 +3,16 @@ import { useCurrentEditor } from "@tiptap/react";
 import "./MenuBar.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  fa2,
+  fa3,
   faBold,
   faCircleCheck,
   faCode,
+  faHeading,
   faItalic,
   faList,
   faList12,
+  faMarker,
   faParagraph,
   faQuoteLeft,
   faRedo,
@@ -19,8 +23,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Tooltip from "../ToolTip/ToolTip";
 
-const initialX = window.innerWidth - 40 - 9 * (window.innerWidth / 100) - 20;
-const initialY = window.innerHeight - 520;
+const initialX = window.innerWidth * 0.05;
+const initialY = window.innerHeight * 0.6;
 
 const MenuBar: React.FC = () => {
   const { editor } = useCurrentEditor();
@@ -70,10 +74,11 @@ const MenuBar: React.FC = () => {
         left: `${position.x}px`,
         top: `${position.y}px`,
       }}
+      onMouseDown={handleMouseDown}
     >
-      <div className="drag-handle" onMouseDown={handleMouseDown}>
-        ::::
-      </div>
+      <Tooltip tooltipText="Drag">
+      <div className="drag-handle" >::::</div>
+      </Tooltip>
       <div className="menu-options">
         <Tooltip tooltipText="Bold">
           <button
@@ -163,32 +168,6 @@ const MenuBar: React.FC = () => {
             <FontAwesomeIcon icon={faCode} />
           </button>
         </Tooltip>
-        <Tooltip tooltipText="Clear Marks">
-          <button
-            onClick={() =>
-              editor
-                .chain()
-                .focus()
-                .unsetAllMarks()
-                .run()
-            }
-          >
-            clear marks
-          </button>
-        </Tooltip>
-        <Tooltip tooltipText="Clear Nodes">
-          <button
-            onClick={() =>
-              editor
-                .chain()
-                .focus()
-                .clearNodes()
-                .run()
-            }
-          >
-            clear nodes
-          </button>
-        </Tooltip>
         <Tooltip tooltipText="Paragraph">
           <button
             onClick={() =>
@@ -216,7 +195,7 @@ const MenuBar: React.FC = () => {
               editor.isActive("heading", { level: 1 }) ? "is-active" : ""
             }
           >
-            H1
+            <FontAwesomeIcon icon={faHeading} />
           </button>
         </Tooltip>
         <Tooltip tooltipText="H2">
@@ -232,7 +211,7 @@ const MenuBar: React.FC = () => {
               editor.isActive("heading", { level: 2 }) ? "is-active" : ""
             }
           >
-            H2
+            <FontAwesomeIcon icon={fa2} />
           </button>
         </Tooltip>
         <Tooltip tooltipText="H3">
@@ -248,7 +227,7 @@ const MenuBar: React.FC = () => {
               editor.isActive("heading", { level: 3 }) ? "is-active" : ""
             }
           >
-            H3
+            <FontAwesomeIcon icon={fa3} />
           </button>
         </Tooltip>
         <Tooltip tooltipText="Bullet List">
@@ -390,7 +369,7 @@ const MenuBar: React.FC = () => {
                 : ""
             }
           >
-            Purple
+            <FontAwesomeIcon icon={faMarker} />
           </button>
         </Tooltip>
         <Tooltip tooltipText="Multiple Choice">

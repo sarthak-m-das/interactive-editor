@@ -7,7 +7,6 @@ import { Role, Mode } from '../../types/role';
 import { useAppDispatch } from '../../store';
 import { useCurrentEditor } from '@tiptap/react';
 import { Article } from '../../types/article';
-import { Block } from '../../types/block';
 import { updateArticle } from '../../actions/article';
 import logo from '../../assets/logo.png';
 import edit from '../../assets/edit.png';

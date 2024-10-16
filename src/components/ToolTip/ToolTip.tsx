@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./ToolTip.scss"; // Optional for custom styles
+import "./ToolTip.scss";
 
 const Tooltip = ({ tooltipText, children }: any) => {
   const [showTooltip, setShowTooltip] = useState(false);
