@@ -15,12 +15,21 @@
   color: #fff;
 
   .header-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     .header-title {
       font-weight: bold;
       font-size: 1.8rem;
       color: #ffcc00;
       cursor: pointer;
       font-family: 'Comic Sans MS', cursive, sans-serif;
+      margin-left: 8px;
+    }
+    .header-logo {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
     }
   }
 
@@ -30,14 +39,19 @@
 
   .header-edit-button {
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 0.5rem 1.5rem;
+    padding: 4px 8px;
     background-color: rgba(255, 255, 255, 0.2);
     color: rgba(255, 255, 255, 0.9); 
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+
+    .header-edit-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 4px;
+    }
 
     &:hover {
       background-color: #121212;
@@ -46,21 +60,22 @@
 
   .header-publish-button {
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 0.5rem 1rem;
+    padding: 4px 8px;
     background-color: #ffcc00;
     color: #2c2c2c;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
 
+    .header-publish-icon {
+      width: 25px;
+      height: 25px;
+      margin-right: 4px;
+    }
+
     &:hover {
       background-color: #ffdd33;
     }
   }
-}
-
-.article-content {
-  padding-top: 80px;
 }

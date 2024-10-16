@@ -2,7 +2,7 @@ import { Color } from "@tiptap/extension-color";
 import ListItem from "@tiptap/extension-list-item";
 import TextStyle from "@tiptap/extension-text-style";
 import StarterKit from "@tiptap/starter-kit";
-import { EditorProvider, useCurrentEditor } from '@tiptap/react';
+import { EditorProvider } from '@tiptap/react';
 import MenuBar from '../../components/MenuBar';
 import MultipleChoice from '../../components/Extensions/MultipleChoice/extension';
 import { selectMode } from '../../slices/rolesSlice';
@@ -11,9 +11,8 @@ import Header from '../../components/Header';
 import { Article } from "../../types/article";
 import { useAppDispatch, useAppSelector } from "../../store";
 import "./Editor.scss";
-import { useEffect, useState } from "react";
-import { selectLoading, setCurrentArticle } from "../../slices/articleSlice";
-import Loader from "../../components/Loader";
+import { useEffect } from "react";
+import { setCurrentArticle } from "../../slices/articleSlice";
 
 type EditorProps = {
   article: Article | null;

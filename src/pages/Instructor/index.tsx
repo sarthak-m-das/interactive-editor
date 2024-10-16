@@ -6,6 +6,8 @@ import { createArticle, getAllArticle } from '../../actions/article';
 import { useSelector } from 'react-redux';
 import { selectArticles, setArticles } from '../../slices/articleSlice';
 import { useAppDispatch } from '../../store';
+import { Mode } from '../../types/role';
+import { setMode } from '../../slices/rolesSlice';
 
 const InstructorPage: React.FC = () => {
   const navigate = useNavigate();
@@ -32,6 +34,7 @@ const InstructorPage: React.FC = () => {
     event.preventDefault();
     const resp = await createArticle(title, description);
     closeModal();
+    dispatch(setMode(Mode.edit));
     navigate("/article/" + resp.id);
   };
 

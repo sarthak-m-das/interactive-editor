@@ -8,6 +8,8 @@
 }
 
 .article-content {
+  position: relative;
+  top: 60px;
   padding: 2rem;
   overflow-y: auto;
   flex-grow: 1;
@@ -16,10 +18,6 @@
   font-family: sans-serif;
   line-height: 1.4;
   min-height: calc(100vh - 2rem);
-
-  > * + * {
-    margin-top: 0.75em;
-  }
 }
 
 button {

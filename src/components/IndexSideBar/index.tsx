@@ -40,6 +40,7 @@ const IndexSideBar: React.FC<IndexSideBarProps> = ({ blocks }) => {
 
   return (
     <div className="side-menu">
+      <div className="side-menu-title">Table of Contents</div>
       <ul>
         {headings.map((heading, index) => (
           <li

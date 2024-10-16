@@ -9,6 +9,9 @@ import { useCurrentEditor } from '@tiptap/react';
 import { Article } from '../../types/article';
 import { Block } from '../../types/block';
 import { updateArticle } from '../../actions/article';
+import logo from '../../assets/logo.png';
+import edit from '../../assets/edit.png';
+import publish from '../../assets/publish.png';
 
 type HeaderProps = {
   article: Article | null;
@@ -51,12 +54,19 @@ const Header: React.FC<HeaderProps> = ({article, articleId}) => {
 
   return (
     <div className="header-bar">
-      <div className="header-left">
-        <div className="header-title" onClick={handleOnClick()}>Interactive Learning Platform</div>
+      <div className="header-left" onClick={handleOnClick()}>
+        <img src={logo} alt="logo" className="header-logo" />
+        <div className="header-title">Interactive Learning Platform</div>
       </div>
       <div className="header-right">
-        {role === Role.instructor && mode === Mode.view && <div className="header-edit-button" onClick={handleMode}>Edit</div>}
-        {role === Role.instructor && mode === Mode.edit && <div className="header-publish-button" onClick={handleMode}>Publish</div>}
+        {role === Role.instructor && mode === Mode.view && <div className="header-edit-button" onClick={handleMode}>
+          <img src={edit} alt="edit" className="header-edit-icon" />
+          Edit
+        </div>}
+        {role === Role.instructor && mode === Mode.edit && <div className="header-publish-button" onClick={handleMode}>
+          <img src={publish} alt="publish" className="header-publish-icon" />
+          Publish
+        </div>}
       </div>
         
     </div>

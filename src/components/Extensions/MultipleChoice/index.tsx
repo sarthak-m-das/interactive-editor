@@ -25,6 +25,7 @@ const MultipleChoiceComponent: React.FC<MultipleChoiceProps> = (props) => {
     const fetchAnswer = async () => {
       if (!!id && !!blockID) {
         const resp = await getAnswer(id, blockID);
+        console.log(resp);
         if (resp) {
           setSelectedOption(resp.selectedOption);
           setSubmitted(true);

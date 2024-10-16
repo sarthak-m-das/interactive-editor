@@ -7,8 +7,8 @@ interface RoleState {
 
 // Initial state
 const initialState: RoleState = {
-  currentRole: Role.guest,
-  mode: Mode.view,
+  currentRole: localStorage.getItem('role') as Role || Role.student,
+  mode: localStorage.getItem('mode') as Mode || Mode.view,
 };
 
 export const roleSlice = createSlice({
@@ -17,9 +17,11 @@ export const roleSlice = createSlice({
   reducers: {
     setRole: (state, action: PayloadAction<Role>) => {
       state.currentRole = action.payload;
+      localStorage.setItem('role', action.payload);
     },
     setMode: (state, action: PayloadAction<Mode>) => {
       state.mode = action.payload;
+      localStorage.setItem('mode', action.payload);
     }
     
   },
