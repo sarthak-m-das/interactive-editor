@@ -1,7 +1,7 @@
 .multiple-choice-block {
   background: rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: none;
   border-radius: 0.5rem;
   padding: 1.5rem;
   transition: background-color 0.3s ease;
@@ -70,7 +70,7 @@
           flex: 1;
 
           input[type="radio"] {
-            margin-right: 8px;
+            margin: 0 8px 0 0;
           }
 
           input[type="text"] {
@@ -167,7 +167,8 @@
             margin-bottom: 1rem;
 
             input[type="radio"] {
-              margin-bottom: 8px;
+              align-items: center;
+              margin: 0 0 8px 0;
             }
 
             input[type="text"] {

@@ -15,6 +15,7 @@ const MultipleChoiceComponent: React.FC<MultipleChoiceProps> = (props) => {
   const {id} = useParams<{id: string}>();
 
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const [submitteOption, setSubmitteOption] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState(false);
 
   const isEditable = editor.isEditable;
@@ -27,6 +28,7 @@ const MultipleChoiceComponent: React.FC<MultipleChoiceProps> = (props) => {
         const resp = await getAnswer(id, blockID);
         console.log(resp);
         if (resp) {
+          setSubmitteOption(resp.selectedOption);
           setSelectedOption(resp.selectedOption);
           setSubmitted(true);
         }
@@ -71,12 +73,14 @@ const MultipleChoiceComponent: React.FC<MultipleChoiceProps> = (props) => {
   };
 
   const submitAnswer = () => {
-    if(!!id && !!blockID && selectedOption !== null)
+    if(!!id && !!blockID && selectedOption !== null) {
       saveAnswer(id, blockID, selectedOption);
-    setSubmitted(true);
+      setSubmitteOption(selectedOption);
+      setSubmitted(true);
+    }
   };
 
-  const isCorrect = selectedOption === correctAnswer;
+  const isCorrect = submitteOption === correctAnswer;
 
   return (
     <>
@@ -91,7 +95,7 @@ const MultipleChoiceComponent: React.FC<MultipleChoiceProps> = (props) => {
           />
         </div>
         <div className="choices-container">
-          {/* <p>Choices</p> */}
+          <p>Choices</p>
           <ul>
             {choices.map((choice: string, index: number) => (
               <li key={index}>
@@ -137,7 +141,6 @@ const MultipleChoiceComponent: React.FC<MultipleChoiceProps> = (props) => {
                     value={index}
                     checked={selectedOption === index}
                     onChange={() => handleOptionSelect(index)}
-                    disabled={submitted}
                   />
                   <span>{choice}</span>
                 </label>
@@ -154,15 +157,13 @@ const MultipleChoiceComponent: React.FC<MultipleChoiceProps> = (props) => {
             Submit Answer
           </button>
         ) : (
-          <div>
-            {isCorrect ? (
-              <p style={{ color: 'green', marginTop: '16px' }}>Correct!</p>
-            ) : (
-              <p style={{ color: 'red', marginTop: '16px' }}>
-                Incorrect. Try again!
-              </p>
-            )}
-          </div>
+          <button
+            className="submit-button"
+            onClick={submitAnswer}
+            disabled={selectedOption === null}
+          >
+            Update Answer
+          </button>
         )}
       </NodeViewWrapper>
     )}
