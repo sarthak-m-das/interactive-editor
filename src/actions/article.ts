@@ -1,62 +1,41 @@
 import { Article } from "../types/article";
-import config from "../config";
+import getArticleById from "../apis/article/getArticleById";
+import fetchAllArticles from "../apis/article/getAllArticle";
+import updateArticleById from "../apis/article/updateArticleById";
+import { Dispatch } from '@reduxjs/toolkit';
+import { setArticles, setCurrentArticle } from "../slices/articleSlice";
+import { Block } from "../types/block";
 
-export const createArticle = async (title: string, description: string) => {
-  try {
-    const article: Article = {
-      title,
-      description,
-      id: "",
-      type: "doc",
-      content: [],
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
-
-    const response = await fetch(`${config.API_ROOT}/articles`, {
-      method: 'POST',
-      headers: {
-      'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(article),
-    });
-    return response.json();
-  } catch (error) {
-    console.error('Error creating article', error);
+export const getArticle = (id: string | undefined) => async (dispatch: Dispatch) => {
+  if (!id) {
+    return;
+  }
+  const resp = await getArticleById(id);
+  if (resp) {
+    dispatch(setCurrentArticle(resp.article));
   }
 };
 
-export const getArticle = async (id: string) => {
-  try {
-    const response = await fetch(`${config.API_ROOT}/articles/${id}`);
-    return response.json();
-  } catch (error) {
-    console.error('Error getting article', error);
-    return null;
-  }
-};
-
-export const getAllArticle = async () => {
-  try {
-    const response = await fetch(`${config.API_ROOT}/articles`);
-    return response.json();
-  } catch (error) {
-    console.error('Error getting all articles', error);
-    return [];
+export const getAllArticle =  () => async(dispatch: Dispatch) => {
+  const resp = await fetchAllArticles();
+  if (resp) {
+    dispatch(setArticles(resp.articles));
   }
 }
 
-export const updateArticle = async (article: Article) => {
-  try {
-    const response = await fetch(`${config.API_ROOT}/articles/${article.id}`, {
-      method: 'PUT',
-      headers: {
-      'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(article),
-    });
-    return response.json();
-  } catch (error) {
-    console.error('Error updating article', error);
+export const updateArticle = (article: Article | null, content: any) => async(dispatch: Dispatch) => {
+  if (article === null) {
+    return
   }
+  
+  const updatedArticle = { ...article };
+  updatedArticle.type = 'doc';
+  updatedArticle.content = content?.map((block: Block) => ({
+    ...block,
+    type: block.type || ''
+  })) as Block[];
+  updatedArticle.updatedAt = new Date();
+
+  // Save article
+  await updateArticleById(updatedArticle.id, updatedArticle);
 };

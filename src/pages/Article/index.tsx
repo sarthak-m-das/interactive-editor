@@ -3,7 +3,7 @@ import './Article.scss';
 import IndexSideBar from '../../components/IndexSideBar';
 import Editor from '../Editor';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { selectCurrentArticle, setCurrentArticle } from '../../slices/articleSlice';
+import { selectCurrentArticle } from '../../slices/articleSlice';
 import { getArticle } from '../../actions/article';
 import { useParams } from 'react-router-dom';
 import { selectMode } from '../../slices/rolesSlice';
@@ -16,13 +16,7 @@ const ArticlePage: React.FC = () => {
 
   useEffect(() => {
     const fetchArticles = async () => {
-      if (!id) {
-        return;
-      }
-      const resp = await getArticle(id);
-      if (resp) {
-        dispatch(setCurrentArticle(resp.article));
-      }
+      dispatch(getArticle(id))
     };
     fetchArticles();
   }, [dispatch, id, mode]);

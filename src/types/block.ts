@@ -1,4 +1,5 @@
 export enum BlockType {
+  Paragraph = 'paragraph',
   Text = 'text',
   Image = 'image',
   CodeSnippet = 'codeBlock',
@@ -17,6 +18,11 @@ export interface Block {
   attrs?: Record<string, any>;
   content?: Block[];
   text?: string;
+}
+
+export interface ParagraphBlock extends Block {
+  type: BlockType.Paragraph;
+  content: Block[];
 }
 
 export interface TextBlock extends Block {

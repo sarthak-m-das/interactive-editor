@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Student.scss';
 import { useSelector } from 'react-redux';
-import { selectArticles, setArticles } from '../../slices/articleSlice';
+import { selectArticles } from '../../slices/articleSlice';
 import { getAllArticle } from '../../actions/article';
 import { useAppDispatch } from '../../store';
 
@@ -13,14 +13,7 @@ const StudentPage: React.FC = () => {
 
   useEffect(() => {
     const fetchArticles = async () => {
-      try {
-        const resp = await getAllArticle();
-        if (resp) {
-          dispatch(setArticles(resp.articles));
-        }
-      } catch (error) {
-        console.error('Failed to fetch articles', error);
-      }
+      dispatch(getAllArticle());
     };
 
     fetchArticles();

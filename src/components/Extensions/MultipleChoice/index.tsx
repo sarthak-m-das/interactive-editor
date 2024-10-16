@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { NodeViewWrapper } from '@tiptap/react';
 import './MultipleChoice.scss';
 import { useParams } from 'react-router-dom';
-import { saveAnswer, getAnswer } from '../../../actions/answer';
+import saveAnswer from '../../../apis/answer/saveAnswer';
+import getAnswer from '../../../apis/answer/getAnswer';
 
 interface MultipleChoiceProps {
   editor: any;

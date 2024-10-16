@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CreateArticleModal from '../../components/CreateArticleModal';
 import './Instructor.scss';
-import { createArticle, getAllArticle } from '../../actions/article';
+import { getAllArticle } from '../../actions/article';
 import { useSelector } from 'react-redux';
-import { selectArticles, setArticles } from '../../slices/articleSlice';
+import { selectArticles } from '../../slices/articleSlice';
 import { useAppDispatch } from '../../store';
 import { Mode } from '../../types/role';
 import { setMode } from '../../slices/rolesSlice';
+import createArticle from '../../apis/article/createArticle';
 
 const InstructorPage: React.FC = () => {
   const navigate = useNavigate();
@@ -17,14 +18,7 @@ const InstructorPage: React.FC = () => {
 
   useEffect(() => {
     const fetchArticles = async () => {
-      try {
-        const resp = await getAllArticle();
-        if (resp) {
-          dispatch(setArticles(resp.articles));
-        }
-      } catch (error) {
-        console.error('Failed to fetch articles', error);
-      }
+      dispatch(getAllArticle());
     };
 
     fetchArticles();

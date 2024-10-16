@@ -33,21 +33,8 @@ const Header: React.FC<HeaderProps> = ({article, articleId}) => {
   };
 
   const handleMode = async () => {
-    if (article === null) {
-      return
-    }
-    
     if (mode === Mode.edit && editor) {
-      const updatedArticle = { ...article };
-      updatedArticle.type = 'doc';
-      updatedArticle.content = editor.getJSON().content?.map(block => ({
-        ...block,
-        type: block.type || ''
-      })) as Block[];
-      updatedArticle.updatedAt = new Date();
-
-      // Save article
-      await updateArticle(updatedArticle);
+      dispatch(updateArticle(article, editor.getJSON().content));
     }
     dispatch(setMode(mode === Mode.view ? Mode.edit : Mode.view));
   };
